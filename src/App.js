@@ -6,7 +6,7 @@ import Dashboard from "./components/Dashboard";
 import CreateListing from "./components/CreateListing";
 import AllListings from "./components/AllListings"; // placeholder
 import MyListings from "./components/MyListings"; // placeholder
-import SearchListings from "./components/SearchListings"; // placeholder
+import SearchListing from "./components/SearchListing"; // placeholder
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
           <Route path="create" element={<CreateListing />} />
           <Route path="all" element={<AllListings />} />
           <Route path="mine" element={<MyListings />} />
-          <Route path="search" element={<SearchListings />} />
+          <Route path="search" element={<SearchListing />} />
         </Route>
 
         {/* Catch-all redirect */}
