@@ -8,7 +8,7 @@ import CreateListing from "./components/CreateListing";
 import AllListings from "./components/AllListings";
 import MyListings from "./components/MyListings";
 import SearchListing from "./components/SearchListing";
-import ListingDetails from "./components/ListingDetails";
+import ListingDetails from "./components/ListingDetail";
 
 function App() {
   return (
