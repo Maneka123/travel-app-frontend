@@ -10,7 +10,7 @@ const AllListings = () => {
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const res = await api.get("/getListing"); // make sure this matches your backend
+        const res = await api.get("/getListings"); // make sure this matches your backend
         setListings(res.data.listings);
       } catch (err) {
         console.error(err.response?.data || err.message);
