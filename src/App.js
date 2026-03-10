@@ -7,7 +7,7 @@ import Dashboard from "./components/Dashboard";
 import CreateListing from "./components/CreateListing";
 import AllListings from "./components/AllListings";
 import MyListings from "./components/MyListings";
-import SearchListing from "./components/SearchListing";
+import SearchListing from "./components/searchListingearchListing";
 
 function App() {
   return (
