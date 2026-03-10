@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import CreateListing from "./CreateListing";
 import AllListings from "./AllListings";
 import MyListings from "./MyListings";
-import SearchListing from "./SearchListing";
+import SearchListing from "./SearchListingearchListing";
 
 const Dashboard = () => {
   const token = localStorage.getItem("token");
