@@ -1,10 +1,9 @@
-import axios from "axios"
+import axios from "axios";
 
 const api = axios.create({
   baseURL: "https://mini-travel-experience-listing-plat-omega.vercel.app/api",
-  headers: {
-    "Content-Type": "application/json"
-  }
-})
+  headers: { "Content-Type": "application/json" },
+  withCredentials: true,
+});
 
-export default api
+export default api;
