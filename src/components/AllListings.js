@@ -10,7 +10,7 @@ const AllListings = () => {
     const fetchListings = async () => {
       try {
         setLoading(true);
-        const res = await api.get("/getListings"); // fetch all listings
+        const res = await api.get("/getListing"); // fetch all listings
         setListings(res.data.listings || []);
       } catch (err) {
         console.error(err.response?.data || err.message);
