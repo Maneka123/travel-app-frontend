@@ -4,9 +4,9 @@ import RegisterForm from "./components/RegisterForm";
 import LoginForm from "./components/LoginForm";
 import Dashboard from "./components/Dashboard";
 import CreateListing from "./components/CreateListing";
-import AllListings from "./components/AllListings"; // placeholder
-import MyListings from "./components/MyListings"; // placeholder
-import SearchListing from "./components/SearchListing"; // placeholder
+import AllListings from "./components/AllListings";
+import MyListings from "./components/MyListings";
+import SearchListing from "./components/searchListing";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
 
         {/* Dashboard with nested routes */}
-        <Route path="/dashboard" element={<Dashboard />}>
+        <Route path="/dashboard/*" element={<Dashboard />}>
           <Route path="create" element={<CreateListing />} />
           <Route path="all" element={<AllListings />} />
           <Route path="mine" element={<MyListings />} />
