@@ -7,16 +7,17 @@ import Dashboard from "./components/Dashboard";
 import CreateListing from "./components/CreateListing";
 import AllListings from "./components/AllListings";
 import MyListings from "./components/MyListings";
-import SearchListing from "./components/searchListing";
+import SearchListing from "./components/SearchListing";
+import ListingDetails from "./components/ListingDetails";
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Home redirect to login */}
+        {/* Home redirects to login */}
         <Route path="/" element={<Navigate to="/login" />} />
 
-        {/* Auth pages */}
+        {/* Auth routes */}
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="all" element={<AllListings />} />
           <Route path="mine" element={<MyListings />} />
           <Route path="search" element={<SearchListing />} />
+          <Route path="listing/:id" element={<ListingDetails />} />
         </Route>
 
         {/* Catch-all redirect */}

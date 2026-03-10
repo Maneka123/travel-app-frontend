@@ -1,21 +1,62 @@
 // src/components/Dashboard.js
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 
 const Dashboard = () => {
   return (
     <div>
-      <h2>Dashboard</h2>
+      <h1>Dashboard</h1>
+
       {/* Navbar */}
       <nav style={{ marginBottom: "20px" }}>
-        <Link to="create" style={{ marginRight: "10px" }}>Create Listing</Link>
-        <Link to="all" style={{ marginRight: "10px" }}>View All Listings</Link>
-        <Link to="mine" style={{ marginRight: "10px" }}>My Listings</Link>
-        <Link to="search" style={{ marginRight: "10px" }}>Search Listing</Link>
-        <Link to="/login">Logout</Link>
+        <NavLink
+          to="create"
+          style={({ isActive }) => ({
+            marginRight: "10px",
+            fontWeight: isActive ? "bold" : "normal",
+          })}
+        >
+          Create Listing
+        </NavLink>
+        <NavLink
+          to="all"
+          style={({ isActive }) => ({
+            marginRight: "10px",
+            fontWeight: isActive ? "bold" : "normal",
+          })}
+        >
+          All Listings
+        </NavLink>
+        <NavLink
+          to="mine"
+          style={({ isActive }) => ({
+            marginRight: "10px",
+            fontWeight: isActive ? "bold" : "normal",
+          })}
+        >
+          My Listings
+        </NavLink>
+        <NavLink
+          to="search"
+          style={({ isActive }) => ({
+            marginRight: "10px",
+            fontWeight: isActive ? "bold" : "normal",
+          })}
+        >
+          Search Listings
+        </NavLink>
+        <button
+          onClick={() => {
+            localStorage.removeItem("token");
+            window.location.href = "/login";
+          }}
+          style={{ marginLeft: "20px" }}
+        >
+          Logout
+        </button>
       </nav>
 
-      {/* Nested routes will render here */}
+      {/* Render nested routes */}
       <Outlet />
     </div>
   );

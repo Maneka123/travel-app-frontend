@@ -10,7 +10,7 @@ const AllListings = () => {
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const res = await api.get("/getListings"); // backend endpoint
+        const res = await api.get("/getListing"); // make sure this matches your backend
         setListings(res.data.listings);
       } catch (err) {
         console.error(err.response?.data || err.message);
@@ -21,7 +21,7 @@ const AllListings = () => {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div>
       <h2>All Listings</h2>
       {listings.length === 0 ? (
         <p>No listings found</p>
@@ -38,51 +38,27 @@ const AllListings = () => {
               key={listing._id}
               style={{
                 border: "1px solid #ccc",
+                padding: "10px",
                 borderRadius: "8px",
-                padding: "15px",
-                boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                backgroundColor: "#fff",
               }}
             >
               {listing.image && (
                 <img
                   src={listing.image}
                   alt={listing.title}
-                  style={{
-                    width: "100%",
-                    height: "150px",
-                    objectFit: "cover",
-                    borderRadius: "5px",
-                    marginBottom: "10px",
-                  }}
+                  style={{ maxWidth: "200px", marginBottom: "10px" }}
                 />
               )}
-              <h3 style={{ margin: "5px 0" }}>{listing.title}</h3>
-              <p style={{ margin: "3px 0", fontWeight: "bold" }}>
-                {listing.location}
-              </p>
-              <p style={{ margin: "3px 0" }}>
-                {listing.description.length > 50
-                  ? listing.description.substring(0, 50) + "..."
-                  : listing.description}
-              </p>
-              <p style={{ margin: "5px 0", color: "#007bff", fontWeight: "bold" }}>
-                ${listing.price}
-              </p>
+              <h3>{listing.title}</h3>
+              <p>{listing.location}</p>
+              <p>{listing.description.substring(0, 50)}...</p>
+              <p>Price: ${listing.price}</p>
               <button
+                style={{ marginTop: "10px" }}
                 onClick={() => navigate(`/dashboard/listing/${listing._id}`)}
-                style={{
-                  padding: "8px 12px",
-                  border: "none",
-                  borderRadius: "5px",
-                  backgroundColor: "#28a745",
-                  color: "#fff",
-                  cursor: "pointer",
-                  marginTop: "10px",
-                }}
               >
                 View Details
               </button>
