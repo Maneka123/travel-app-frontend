@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import CreateListing from "./CreateListing";
 import AllListings from "./AllListings";
 import MyListings from "./MyListings";
-import SearchListing from "./SearchListing";
+import SearchListings from "./SearchListing";
 
 const Dashboard = () => {
   const token = localStorage.getItem("token");
@@ -22,7 +22,7 @@ const Dashboard = () => {
           <Route path="create" element={<CreateListing />} />
           <Route path="all" element={<AllListings />} />
           <Route path="my" element={<MyListings />} />
-          <Route path="search" element={<SearchListing />} />
+          <Route path="search" element={<SearchListings />} />
           <Route path="/" element={<h2>Welcome to your dashboard!</h2>} />
         </Routes>
       </div>
