@@ -56,12 +56,9 @@ const AllListings = () => {
               <p>{listing.location}</p>
               <p>{listing.description.substring(0, 50)}...</p>
               <p>Price: ${listing.price}</p>
-              <button
-                style={{ marginTop: "10px" }}
-                onClick={() => navigate(`/dashboard/listing/${listing._id}`)}
-              >
-                View Details
-              </button>
+              <button onClick={() => navigate(`listing/${listing._id}`)}>
+  View Details
+</button>
             </div>
           ))}
         </div>
