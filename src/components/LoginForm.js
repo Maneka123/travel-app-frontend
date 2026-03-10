@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 const LoginForm = () => {
   const [form, setForm] = useState({ email: "", password: "" });
+  const navigate = useNavigate(); // hook to navigate programmatically
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -12,9 +14,11 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const res = await api.post("/login", form);
-      alert(res.data.message);
       localStorage.setItem("token", res.data.token);
-      setForm({ email: "", password: "" });
+      alert(res.data.message);
+
+      // Redirect to dashboard
+      navigate("/dashboard");
     } catch (err) {
       console.error(err.response?.data || err.message);
       alert(err.response?.data?.error || "Login failed");
