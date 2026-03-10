@@ -1,17 +1,22 @@
 import React, { useState } from "react";
-import api from "../services/api"; // your Axios instance with baseURL and withCredentials
+import api from "../services/api"; // Axios instance
 
 const CreateListing = () => {
   const [form, setForm] = useState({
     title: "",
     location: "",
-    image: "",
+    image: null, // now store a File object
     description: "",
     price: "",
   });
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value, files } = e.target;
+    if (name === "image") {
+      setForm({ ...form, image: files[0] }); // store selected file
+    } else {
+      setForm({ ...form, [name]: value });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -24,15 +29,22 @@ const CreateListing = () => {
     }
 
     try {
-      const res = await api.post("/createListing", form, {
+      const formData = new FormData();
+      formData.append("title", form.title);
+      formData.append("location", form.location);
+      formData.append("description", form.description);
+      formData.append("price", form.price);
+      if (form.image) formData.append("image", form.image);
+
+      const res = await api.post("/createListing", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data", // important for file upload
         },
       });
 
       alert(res.data.message);
-      // Reset form after success
-      setForm({ title: "", location: "", image: "", description: "", price: "" });
+      setForm({ title: "", location: "", image: null, description: "", price: "" });
     } catch (err) {
       console.error(err.response?.data || err.message);
       alert(err.response?.data?.error || "Failed to create listing");
@@ -62,10 +74,9 @@ const CreateListing = () => {
         />
         <br />
         <input
-          type="text"
+          type="file"
           name="image"
-          placeholder="Image URL (optional)"
-          value={form.image}
+          accept="image/*"
           onChange={handleChange}
         />
         <br />
