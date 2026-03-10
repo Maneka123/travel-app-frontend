@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import api from "../services/api"; // Axios instance with baseURL and withCredentials
+import api from "../services/api"; // Axios instance with baseURL
 
+// Cloudinary details
 const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dr8cn77wn/image/upload";
 const CLOUDINARY_UPLOAD_PRESET = "travel_app_preset";
 
@@ -8,7 +9,7 @@ const CreateListing = () => {
   const [form, setForm] = useState({
     title: "",
     location: "",
-    image: null, // File object
+    image: null,       // File object
     description: "",
     price: "",
   });
@@ -36,7 +37,7 @@ const CreateListing = () => {
       setLoading(true);
       let imageUrl = "";
 
-      // 1️⃣ Upload image to Cloudinary if selected
+      // 1️⃣ Upload image to Cloudinary
       if (form.image) {
         const data = new FormData();
         data.append("file", form.image);
@@ -48,7 +49,7 @@ const CreateListing = () => {
         });
 
         const file = await res.json();
-        imageUrl = file.secure_url;
+        if (file.secure_url) imageUrl = file.secure_url;
       }
 
       // 2️⃣ Send form data + image URL to backend
@@ -77,7 +78,7 @@ const CreateListing = () => {
   };
 
   return (
-    <div style={{ maxWidth: 600 }}>
+    <div style={{ maxWidth: 600, margin: "auto" }}>
       <h2>Create Listing</h2>
       <form onSubmit={handleSubmit}>
         <input
